@@ -21,25 +21,50 @@
             margin-bottom: 10px;
         }
         .produtos {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            max-width: 420px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
         }
         .produto {
             background: white;
-            padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 25px 20px 10px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
         }
         .produto img {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 4px;
+            max-width: 350px;
+            max-height: 320px;
+            object-fit: contain;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-bottom: 18px;
+            background: #f5f5f5;
         }
-        .produto h3 {
-            margin: 10px 0;
-            color: #333;
+        .produto img:hover {
+            transform: scale(1.05);
+        }
+        .produto-nome {
+            font-size: 1.15em;
+            color: #00796b;
+            text-align: center;
+            margin-bottom: 0;
+            margin-top: 0;
+            font-weight: bold;
+        }
+        .separador {
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #00bfae 0%, #00e6b0 100%);
+            border-radius: 6px;
+            margin: 18px 0 18px 0;
         }
         .footer {
             text-align: center;
@@ -54,9 +79,7 @@
         <h1>Catálogo de Produtos</h1>
     </div>
 
-    <div class="produtos" id="produtos">
-        <!-- Produtos serão inseridos aqui via JavaScript -->
-    </div>
+    <div class="produtos" id="produtos"></div>
 
     <div class="footer">
         <p>&copy; 2024 Catálogo de Produtos. Todos os direitos reservados.</p>
@@ -65,6 +88,19 @@
     <script>
         // Função para abrir detalhes do produto em nova guia
         function abrirDetalhes(produto) {
+            // Decide qual escala mostrar
+            let escala = '';
+            const nomeLower = produto.nome.toLowerCase();
+            if (nomeLower.includes('guardanapo')) {
+                escala = "escala_guardanapo.png";
+            } else if (nomeLower.includes('saco')) {
+                escala = "escala_saco.png";
+            }
+
+            const escalaHtml = escala
+                ? `<img src='${escala}' alt='Escala' class='escala-img'>`
+                : '';
+
             const win = window.open('', '_blank');
             win.document.write(`
                 <html lang='pt-BR'>
@@ -73,18 +109,19 @@
                     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
                     <title>Detalhes do Produto</title>
                     <style>
-                        body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 20px; }
-                        .container { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 30px; max-width: 600px; margin: 40px auto; }
-                        .imagem-detalhe { display: flex; align-items: flex-end; gap: 20px; }
-                        .imagem-detalhe img { width: 300px; height: auto; border-radius: 8px; }
-                        .regua { height: 300px; width: 40px; background: repeating-linear-gradient(to top, #ccc, #ccc 2px, transparent 2px, transparent 28px); position: relative; }
-                        .regua span { position: absolute; left: 45px; font-size: 12px; color: #888; }
-                        .regua .cm10 { bottom: 0; }
-                        .regua .cm20 { bottom: 100px; }
-                        .regua .cm30 { bottom: 200px; }
-                        .regua .cm40 { bottom: 300px; }
-                        h2 { margin-top: 0; }
-                        .voltar { margin-top: 30px; padding: 10px 30px; background: #007bff; color: #fff; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+                        body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 30px; }
+                        .container { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.13); padding: 45px; max-width: 900px; margin: 60px auto; }
+                        h2 { margin-top: 40px; font-size: 1.1em; color: #00796b; text-align: center; }
+                        .imagem-detalhe { display: flex; align-items: center; gap: 40px; justify-content: center; margin-top: 30px; }
+                        .imagem-detalhe img.produto-img,
+                        .imagem-detalhe img.escala-img {
+                            width: 315px;
+                            height: 315px;
+                            object-fit: contain;
+                            border-radius: 12px;
+                            background: #f5f5f5;
+                        }
+                        .voltar { margin-top: 40px; padding: 9px 22px; background: #007bff; color: #fff; border: none; border-radius: 8px; font-size: 0.75em; cursor: pointer; }
                         .voltar:hover { background: #0056b3; }
                     </style>
                 </head>
@@ -92,13 +129,8 @@
                     <div class='container'>
                         <h2>${produto.nome}</h2>
                         <div class='imagem-detalhe'>
-                            <img src='${produto.imagem}' alt='${produto.nome}'>
-                            <div class='regua'>
-                                <span class='cm10'>10cm</span>
-                                <span class='cm20'>20cm</span>
-                                <span class='cm30'>30cm</span>
-                                <span class='cm40'>40cm</span>
-                            </div>
+                            <img src='${produto.imagem}' alt='${produto.nome}' class='produto-img'>
+                            ${escalaHtml}
                         </div>
                         <button class='voltar' onclick='window.close()'>Voltar</button>
                     </div>
@@ -112,16 +144,19 @@
             .then(response => response.json())
             .then(produtos => {
                 const container = document.getElementById('produtos');
-                produtos.forEach(produto => {
+                produtos.forEach((produto, idx) => {
                     const div = document.createElement('div');
                     div.className = 'produto';
                     div.innerHTML = `
-                        <img src="${produto.imagem}" alt="${produto.nome}">
-                        <h3>${produto.nome}</h3>
+                        <img src="${produto.imagem}" alt="${produto.nome}" onclick='abrirDetalhes(${JSON.stringify(produto).replace(/"/g, '&quot;')})'>
+                        <div class="produto-nome">${produto.nome}</div>
                     `;
-                    div.style.cursor = 'pointer';
-                    div.onclick = () => abrirDetalhes(produto);
                     container.appendChild(div);
+                    if (idx < produtos.length - 1) {
+                        const sep = document.createElement('div');
+                        sep.className = 'separador';
+                        container.appendChild(sep);
+                    }
                 });
             })
             .catch(error => console.error('Erro ao carregar produtos:', error));
