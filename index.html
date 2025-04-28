@@ -4,32 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Interativo KAMP</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Catálogo de Produtos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-width: 200px;
+            margin-bottom: 10px;
+        }
+        .produtos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .produto {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .produto img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .produto h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <img class="logo-kamp" src="assets/logo.PNG" alt="Logo KAMP">
+    <div class="header">
+        <img src="logo.png" alt="Logo" class="logo">
         <h1>Catálogo de Produtos</h1>
-    </header>
+    </div>
 
-    <main>
-        <section class="produto">
-            <h2>Produto Exemplo</h2>
-            <img id="produto-imagem" src="assets/1-2kgkraftmix.png" alt="Produto com Papel 1">
-            <div class="opcoes-papel">
-                <button data-imagem="assets/1-2kgkraftmix.png">Papel Kraft Mix 1</button>
-                <button data-imagem="assets/1kfkraftmix.png">Papel Kraft Mix 2</button>
-                <!-- Adicione mais opções de papel -->
-            </div>
-        </section>
-        <!-- Adicione mais produtos -->
-    </main>
+    <div class="produtos" id="produtos">
+        <!-- Produtos serão inseridos aqui via JavaScript -->
+    </div>
 
-    <footer>
-        <p>© 2025 KAMP Embalagens</p>
-    </footer>
+    <div class="footer">
+        <p>&copy; 2024 Catálogo de Produtos. Todos os direitos reservados.</p>
+    </div>
 
-    <script src="script.js"></script>
+    <script>
+        fetch('produtos.json')
+            .then(response => response.json())
+            .then(produtos => {
+                const container = document.getElementById('produtos');
+                produtos.forEach(produto => {
+                    const div = document.createElement('div');
+                    div.className = 'produto';
+                    div.innerHTML = `
+                        <img src="${produto.imagem}" alt="${produto.nome}">
+                        <h3>${produto.nome}</h3>
+                    `;
+                    container.appendChild(div);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar produtos:', error));
+    </script>
 </body>
 </html>
