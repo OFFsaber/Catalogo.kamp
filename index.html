@@ -123,6 +123,22 @@
                         }
                         .voltar { margin-top: 40px; padding: 9px 22px; background: #007bff; color: #fff; border: none; border-radius: 8px; font-size: 0.75em; cursor: pointer; }
                         .voltar:hover { background: #0056b3; }
+
+                        /* MOBILE: imagens em coluna */
+                        @media (max-width: 700px) {
+                            .container { padding: 10px; }
+                            .imagem-detalhe {
+                                flex-direction: column;
+                                gap: 20px;
+                            }
+                            .imagem-detalhe img.produto-img,
+                            .imagem-detalhe img.escala-img {
+                                width: 90vw;
+                                max-width: 95vw;
+                                height: auto;
+                                max-height: 60vw;
+                            }
+                        }
                     </style>
                 </head>
                 <body>
