@@ -291,4 +291,8 @@ h1 {
     h1 {
         font-size: 2em;
     }
+    .btn-vermais .vermais-content {
+        font-size: 0.95em;
+        padding: 10px 0 10px 18px;
+    }
 }

@@ -119,6 +119,9 @@ function abrirDetalhes(produto) {
                     .action-buttons {
                         flex-direction: column;
                     }
+                    .product-name {
+                        font-size: 1.3em;
+                    }
                 }
             </style>
         </head>
