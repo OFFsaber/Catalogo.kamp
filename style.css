@@ -6,6 +6,22 @@
     --text-color: #ffffff;
     --background-color: #0a0a0a;
     --card-background: rgba(255, 255, 255, 0.05);
+
+    /* Cores do tema futurista */
+    --futurista-primary: #00ff9d;
+    --futurista-secondary: #0a0a0a;
+    --futurista-accent: #25D366;
+    --futurista-text: #ffffff;
+    --futurista-background: #0a0a0a;
+    --futurista-card: rgba(255, 255, 255, 0.05);
+
+    /* Cores do tema executivo */
+    --executivo-primary: #2c3e50;
+    --executivo-secondary: #ffffff;
+    --executivo-accent: #3498db;
+    --executivo-text: #333333;
+    --executivo-background: #f5f5f5;
+    --executivo-card: #ffffff;
 }
 
 * {
@@ -22,28 +38,106 @@ body {
     padding: 20px;
 }
 
+/* Estilo Futurista */
+body[data-layout="futurista"] {
+    background: var(--futurista-background);
+    color: var(--futurista-text);
+}
+
+body[data-layout="futurista"] .header {
+    background: var(--futurista-card);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+body[data-layout="futurista"] .logo {
+    filter: drop-shadow(0 0 10px rgba(0, 255, 157, 0.3));
+}
+
+body[data-layout="futurista"] h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--futurista-primary);
+    font-size: 2.5em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+body[data-layout="futurista"] .produto {
+    background: var(--futurista-card);
+    border-radius: 24px;
+    padding: 32px 24px 24px 24px;
+    min-height: 480px;
+    box-shadow: 0 8px 32px rgba(0,255,157,0.10), 0 2px 8px rgba(0,0,0,0.25);
+    border: 2.5px solid transparent;
+    transition: border 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+body[data-layout="futurista"] .produto::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0; left: 0;
+    height: 80px;
+    background: linear-gradient(120deg, var(--futurista-primary) 60%, #1a1a1a 100%);
+    clip-path: polygon(0 60%, 100% 0, 100% 100%, 0% 100%);
+    z-index: 1;
+    opacity: 0.9;
+}
+
+body[data-layout="futurista"] .btn-vermais .vermais-content {
+    background: var(--futurista-primary);
+    color: var(--futurista-secondary);
+}
+
+/* Estilo Executivo */
+body[data-layout="executivo"] {
+    background: var(--executivo-background);
+    color: var(--executivo-text);
+}
+
+body[data-layout="executivo"] .header {
+    background: var(--executivo-card);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+body[data-layout="executivo"] h1 {
+    font-family: 'Roboto', sans-serif;
+    color: var(--executivo-primary);
+    font-size: 2em;
+    font-weight: 500;
+}
+
+body[data-layout="executivo"] .produto {
+    background: var(--executivo-card);
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 400px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+    transition: transform 0.3s;
+}
+
+body[data-layout="executivo"] .produto:hover {
+    transform: translateY(-5px);
+}
+
+body[data-layout="executivo"] .btn-vermais .vermais-content {
+    background: var(--executivo-primary);
+    color: var(--executivo-secondary);
+    border-radius: 5px;
+}
+
+/* Estilos comuns para ambos os layouts */
 .header {
     text-align: center;
     margin-bottom: 40px;
     padding: 20px;
-    background: var(--card-background);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .logo {
     max-width: 200px;
     margin-bottom: 20px;
-    filter: drop-shadow(0 0 10px rgba(0, 255, 157, 0.3));
-}
-
-h1 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--primary-color);
-    font-size: 2.5em;
-    text-transform: uppercase;
-    letter-spacing: 2px;
 }
 
 .filtros {
@@ -123,35 +217,11 @@ h1 {
 }
 
 .produto {
-    background: var(--card-background);
-    border-radius: 24px;
-    padding: 32px 24px 24px 24px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     position: relative;
-    min-height: 480px;
-    box-shadow: 0 8px 32px rgba(0,255,157,0.10), 0 2px 8px rgba(0,0,0,0.25);
-    border: 2.5px solid transparent;
-    transition: border 0.3s, box-shadow 0.3s, transform 0.3s;
     overflow: hidden;
-}
-
-.produto::after {
-    content: '';
-    position: absolute;
-    bottom: 0; right: 0; left: 0;
-    height: 80px;
-    background: linear-gradient(120deg, var(--primary-color) 60%, #1a1a1a 100%);
-    clip-path: polygon(0 60%, 100% 0, 100% 100%, 0% 100%);
-    z-index: 1;
-    opacity: 0.9;
-}
-
-.produto:hover {
-    border: 2.5px solid var(--primary-color);
-    box-shadow: 0 16px 48px rgba(0,255,157,0.25), 0 2px 8px rgba(0,0,0,0.35);
-    transform: translateY(-8px) scale(1.03);
 }
 
 .produto img {
@@ -160,18 +230,14 @@ h1 {
     height: 180px;
     object-fit: contain;
     border-radius: 16px;
-    background: rgba(255,255,255,0.08);
     margin-bottom: 18px;
     align-self: center;
     z-index: 2;
 }
 
 .produto-nome {
-    font-family: 'Orbitron', sans-serif;
     font-size: 1.15em;
-    color: #fff;
     font-weight: bold;
-    text-transform: uppercase;
     margin-bottom: 6px;
     z-index: 2;
 }
@@ -236,8 +302,6 @@ h1 {
     font-family: 'Orbitron', sans-serif;
     font-size: 1.1em;
     font-weight: bold;
-    color: #0a0a0a;
-    background: none;
     padding: 0;
 }
 
@@ -245,23 +309,17 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    background: #00ff9d;
-    border-radius: 0 0 18px 18px;
     padding: 18px 0 18px 32px;
     font-size: 1.1em;
     font-weight: bold;
     letter-spacing: 1px;
-    transition: background 0.2s;
+    transition: all 0.3s;
 }
 
 .btn-vermais .vermais-content i {
     margin-left: 18px;
     font-size: 1.3em;
     transition: transform 0.2s;
-}
-
-.btn-vermais:hover .vermais-content {
-    background: #00c97d;
 }
 
 .btn-vermais:hover .vermais-content i {
@@ -288,11 +346,145 @@ h1 {
         max-width: 90vw;
         height: 120px;
     }
-    h1 {
-        font-size: 2em;
-    }
     .btn-vermais .vermais-content {
         font-size: 0.95em;
         padding: 10px 0 10px 18px;
     }
+}
+
+body[data-layout="executivo"] .search-container i {
+    color: #00c97d;
+}
+body[data-layout="executivo"] #busca {
+    background: #fff;
+    color: #222;
+    border: 2px solid #e0e0e0;
+}
+body[data-layout="executivo"] #busca::placeholder {
+    color: #888;
+}
+body[data-layout="executivo"] .letras button {
+    background: #fff;
+    color: #00c97d;
+    border: 2px solid #e0e0e0;
+}
+body[data-layout="executivo"] .letras button:disabled {
+    color: #bbb;
+    border: 2px solid #f0f0f0;
+}
+body[data-layout="executivo"] .letras button:hover {
+    background: #00c97d;
+    color: #fff;
+}
+
+/* --- FUTURISTA 2 --- */
+body[data-layout="futurista2"] {
+    background: #181c2f;
+    color: #fff;
+}
+body[data-layout="futurista2"] .header {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px #3f51b5aa;
+}
+body[data-layout="futurista2"] h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: #3f51b5;
+    font-size: 2.3em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+body[data-layout="futurista2"] .produto {
+    background: #23284a;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px #3f51b5aa;
+    border: 2.5px solid #3f51b5;
+}
+body[data-layout="futurista2"] .btn-vermais .vermais-content {
+    background: #3f51b5;
+    color: #fff;
+}
+
+/* --- FUTURISTA 3 --- */
+body[data-layout="futurista3"] {
+    background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+    color: #fff;
+}
+body[data-layout="futurista3"] .header {
+    background: rgba(44, 83, 100, 0.25);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px #00c6ff99;
+}
+body[data-layout="futurista3"] h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00c6ff;
+    font-size: 2.3em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+body[data-layout="futurista3"] .produto {
+    background: #1a2a3a;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px #00c6ff99;
+    border: 2.5px solid #00c6ff;
+}
+body[data-layout="futurista3"] .btn-vermais .vermais-content {
+    background: #00c6ff;
+    color: #fff;
+}
+
+/* --- EXECUTIVO 2 --- */
+body[data-layout="executivo2"] {
+    background: #f0f4f8;
+    color: #222;
+}
+body[data-layout="executivo2"] .header {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px #b2bec3;
+}
+body[data-layout="executivo2"] h1 {
+    font-family: 'Roboto', sans-serif;
+    color: #0984e3;
+    font-size: 2em;
+    font-weight: 600;
+}
+body[data-layout="executivo2"] .produto {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px #b2bec3;
+    border: 1px solid #dfe6e9;
+}
+body[data-layout="executivo2"] .btn-vermais .vermais-content {
+    background: #0984e3;
+    color: #fff;
+    border-radius: 6px;
+}
+
+/* --- EXECUTIVO 3 --- */
+body[data-layout="executivo3"] {
+    background: #eaeaea;
+    color: #222;
+}
+body[data-layout="executivo3"] .header {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px #636e72;
+}
+body[data-layout="executivo3"] h1 {
+    font-family: 'Roboto', sans-serif;
+    color: #636e72;
+    font-size: 2em;
+    font-weight: 700;
+}
+body[data-layout="executivo3"] .produto {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px #636e72;
+    border: 1px solid #b2bec3;
+}
+body[data-layout="executivo3"] .btn-vermais .vermais-content {
+    background: #636e72;
+    color: #fff;
+    border-radius: 4px;
 }
