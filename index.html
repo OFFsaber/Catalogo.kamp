@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Produtos</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
     <div class="filtros">
         <div class="search-container">
             <i class="fas fa-search"></i>
-            <input type="text" id="busca" placeholder="Buscar produto por nome...">
+            <input type="text" id="busca" placeholder="BUSCAR PRODUTO...">
         </div>
     </div>
     <div class="letras" id="letras"></div>
@@ -48,15 +48,18 @@
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <title>${produto.nome}</title>
-                    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+                    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
                     <style>
                         body {
-                            font-family: 'Roboto', sans-serif;
-                            background: #0a0a0a;
+                            font-family: 'Orbitron', sans-serif;
+                            background: #000;
                             margin: 0;
                             padding: 0;
                             color: #fff;
+                            background-image: 
+                                radial-gradient(circle at 10% 20%, rgba(255, 61, 0, 0.1) 0%, transparent 20%),
+                                radial-gradient(circle at 90% 80%, rgba(255, 23, 68, 0.1) 0%, transparent 20%);
                         }
                         .container {
                             max-width: 1200px;
@@ -64,11 +67,24 @@
                             padding: 40px 20px;
                         }
                         .product-details {
-                            background: rgba(255, 255, 255, 0.05);
-                            backdrop-filter: blur(10px);
+                            background: rgba(0, 0, 0, 0.8);
                             border-radius: 20px;
                             padding: 40px;
-                            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                            border: 2px solid #ff3d00;
+                            box-shadow: 0 0 10px rgba(255, 61, 0, 0.5),
+                                       0 0 20px rgba(255, 61, 0, 0.3),
+                                       0 0 30px rgba(255, 61, 0, 0.2);
+                            position: relative;
+                            overflow: hidden;
+                        }
+                        .product-details::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            height: 4px;
+                            background: linear-gradient(45deg, #ff3d00, #ff1744);
                         }
                         .product-header {
                             text-align: center;
@@ -76,16 +92,21 @@
                         }
                         .product-name {
                             font-family: 'Orbitron', sans-serif;
+                            background: linear-gradient(45deg, #ff3d00, #ff1744);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
                             font-size: 2.5em;
-                            color: #00ff9d;
                             margin-bottom: 20px;
                             text-transform: uppercase;
+                            letter-spacing: 3px;
+                            text-shadow: 0 0 10px rgba(255, 61, 0, 0.5);
                         }
                         .product-description {
                             font-size: 1.2em;
                             line-height: 1.6;
-                            color: #ccc;
+                            color: #fff;
                             margin-bottom: 30px;
+                            text-shadow: 0 0 10px rgba(255, 61, 0, 0.3);
                         }
                         .product-images {
                             display: flex;
@@ -97,11 +118,14 @@
                         .product-images img {
                             max-width: 400px;
                             border-radius: 15px;
-                            box-shadow: 0 4px 20px rgba(0, 255, 157, 0.2);
+                            border: 2px solid #ff3d00;
+                            box-shadow: 0 0 10px rgba(255, 61, 0, 0.5),
+                                       0 0 20px rgba(255, 61, 0, 0.3);
                             transition: transform 0.3s;
                         }
                         .product-images img:hover {
                             transform: scale(1.05);
+                            box-shadow: 0 0 20px rgba(255, 61, 0, 0.7);
                         }
                         .action-buttons {
                             display: flex;
@@ -118,18 +142,22 @@
                             cursor: pointer;
                             transition: all 0.3s;
                             text-decoration: none;
+                            text-transform: uppercase;
+                            letter-spacing: 2px;
                         }
                         .btn-back {
                             background: #333;
                             color: #fff;
+                            border: 2px solid #ff3d00;
                         }
                         .btn-whatsapp {
                             background: #25D366;
                             color: #fff;
+                            border: 2px solid #25D366;
                         }
                         .btn:hover {
                             transform: translateY(-3px);
-                            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.3);
+                            box-shadow: 0 5px 15px rgba(255, 61, 0, 0.5);
                         }
                         @media (max-width: 768px) {
                             .product-images {
@@ -158,11 +186,11 @@
                             </div>
                             <div class="action-buttons">
                                 <button class="btn btn-back" onclick="window.close()">
-                                    <i class="fas fa-arrow-left"></i> Voltar
+                                    <i class="fas fa-arrow-left"></i> VOLTAR
                                 </button>
                                 <a href="https://wa.me/SEU_NUMERO_WHATSAPP?text=Olá! Encontrei este produto no seu catálogo e gostaria de comprá-lo: ${encodeURIComponent(produto.nome)}%0A${encodeURIComponent(produto.imagem)}" 
                                    class="btn btn-whatsapp" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> WhatsApp
+                                    <i class="fab fa-whatsapp"></i> WHATSAPP
                                 </a>
                             </div>
                         </div>
