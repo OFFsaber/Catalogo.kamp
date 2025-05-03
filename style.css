@@ -22,6 +22,49 @@
     --executivo-text: #333333;
     --executivo-background: #f5f5f5;
     --executivo-card: #ffffff;
+
+    /* --- FUTURISTA 1 - Neon Cyber --- */
+    --f1-cyan: #00FFFF;
+    --f1-magenta: #FF00FF;
+    --f1-night: #0A0A1E;
+    --f1-green: #33FF33;
+    --f1-space: #000033;
+
+    /* --- FUTURISTA 2 - Tech Aurora --- */
+    --f2-purple: #6E3CBC;
+    --f2-deepblue: #3A0CA3;
+    --f2-holo: #4CC9F0;
+    --f2-pink: #F72585;
+    --f2-darkspace: #120458;
+
+    /* --- FUTURISTA 3 - Quantum Glow --- */
+    --f3-darkviolet: #10002B;
+    --f3-indigo: #240046;
+    --f3-quantum: #3C096C;
+    --f3-energetic: #5A189A;
+    --f3-bright: #7B2CBF;
+    --f3-lavender: #C77DFF;
+
+    /* --- EXECUTIVO 1 - Corporate Elegance --- */
+    --e1-corpblue: #0F2C59;
+    --e1-execblue: #1F4172;
+    --e1-charcoal: #2C3333;
+    --e1-lightgray: #DAD7CD;
+    --e1-brown: #A27B5C;
+
+    /* --- EXECUTIVO 2 - Premium Business --- */
+    --e2-darkgray: #2C3639;
+    --e2-midgray: #3F4E4F;
+    --e2-caramel: #A27B5C;
+    --e2-beige: #DCD7C9;
+    --e2-pearl: #E8E8E8;
+
+    /* --- EXECUTIVO 3 - Modern Professional --- */
+    --e3-navy: #1A374D;
+    --e3-blue: #406882;
+    --e3-grayblue: #6998AB;
+    --e3-lightblue: #B1D0E0;
+    --e3-ice: #F1F1F1;
 }
 
 * {
@@ -40,15 +83,14 @@ body {
 
 /* Estilo Futurista */
 body[data-layout="futurista"] {
-    background: var(--futurista-background);
-    color: var(--futurista-text);
+    background: var(--f1-night);
+    color: var(--f1-cyan);
 }
 
 body[data-layout="futurista"] .header {
-    background: var(--futurista-card);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: var(--f1-space);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px var(--f1-cyan);
 }
 
 body[data-layout="futurista"] .logo {
@@ -57,20 +99,18 @@ body[data-layout="futurista"] .logo {
 
 body[data-layout="futurista"] h1 {
     font-family: 'Orbitron', sans-serif;
-    color: var(--futurista-primary);
+    color: var(--f1-cyan);
     font-size: 2.5em;
     text-transform: uppercase;
     letter-spacing: 2px;
+    text-shadow: 0 0 8px var(--f1-magenta), 0 0 2px var(--f1-green);
 }
 
 body[data-layout="futurista"] .produto {
-    background: var(--futurista-card);
+    background: var(--f1-space);
     border-radius: 24px;
-    padding: 32px 24px 24px 24px;
-    min-height: 480px;
-    box-shadow: 0 8px 32px rgba(0,255,157,0.10), 0 2px 8px rgba(0,0,0,0.25);
-    border: 2.5px solid transparent;
-    transition: border 0.3s, box-shadow 0.3s, transform 0.3s;
+    box-shadow: 0 8px 32px var(--f1-cyan);
+    border: 2.5px solid var(--f1-cyan);
 }
 
 body[data-layout="futurista"] .produto::after {
@@ -85,37 +125,34 @@ body[data-layout="futurista"] .produto::after {
 }
 
 body[data-layout="futurista"] .btn-vermais .vermais-content {
-    background: var(--futurista-primary);
-    color: var(--futurista-secondary);
+    background: var(--f1-cyan);
+    color: var(--f1-space);
 }
 
 /* Estilo Executivo */
 body[data-layout="executivo"] {
-    background: var(--executivo-background);
-    color: var(--executivo-text);
+    background: var(--e1-lightgray);
+    color: var(--e1-charcoal);
 }
 
 body[data-layout="executivo"] .header {
-    background: var(--executivo-card);
+    background: var(--e1-corpblue);
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px var(--e1-execblue);
 }
 
 body[data-layout="executivo"] h1 {
     font-family: 'Roboto', sans-serif;
-    color: var(--executivo-primary);
+    color: var(--e1-corpblue);
     font-size: 2em;
     font-weight: 500;
 }
 
 body[data-layout="executivo"] .produto {
-    background: var(--executivo-card);
+    background: #fff;
     border-radius: 10px;
-    padding: 20px;
-    min-height: 400px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    border: 1px solid #eee;
-    transition: transform 0.3s;
+    box-shadow: 0 2px 10px var(--e1-lightgray);
+    border: 1px solid var(--e1-lightgray);
 }
 
 body[data-layout="executivo"] .produto:hover {
@@ -123,8 +160,8 @@ body[data-layout="executivo"] .produto:hover {
 }
 
 body[data-layout="executivo"] .btn-vermais .vermais-content {
-    background: var(--executivo-primary);
-    color: var(--executivo-secondary);
+    background: var(--e1-corpblue);
+    color: #fff;
     border-radius: 5px;
 }
 
@@ -353,15 +390,16 @@ body[data-layout="executivo"] .btn-vermais .vermais-content {
 }
 
 body[data-layout="executivo"] .search-container i {
-    color: #00c97d;
+    color: var(--e1-corpblue);
 }
 body[data-layout="executivo"] #busca {
     background: #fff;
-    color: #222;
-    border: 2px solid #e0e0e0;
+    color: var(--e1-corpblue);
+    border: 2px solid var(--e1-corpblue);
 }
 body[data-layout="executivo"] #busca::placeholder {
-    color: #888;
+    color: var(--e1-corpblue);
+    opacity: 0.7;
 }
 body[data-layout="executivo"] .letras button {
     background: #fff;
@@ -379,112 +417,193 @@ body[data-layout="executivo"] .letras button:hover {
 
 /* --- FUTURISTA 2 --- */
 body[data-layout="futurista2"] {
-    background: #181c2f;
-    color: #fff;
+    background: var(--f2-darkspace);
+    color: var(--f2-holo);
 }
 body[data-layout="futurista2"] .header {
-    background: rgba(0, 0, 0, 0.25);
+    background: var(--f2-deepblue);
     border-radius: 24px;
-    box-shadow: 0 8px 32px #3f51b5aa;
+    box-shadow: 0 8px 32px var(--f2-purple);
 }
 body[data-layout="futurista2"] h1 {
     font-family: 'Orbitron', sans-serif;
-    color: #3f51b5;
+    color: var(--f2-holo);
     font-size: 2.3em;
     text-transform: uppercase;
     letter-spacing: 2px;
+    text-shadow: 0 0 8px var(--f2-pink);
 }
 body[data-layout="futurista2"] .produto {
-    background: #23284a;
+    background: var(--f2-deepblue);
     border-radius: 24px;
-    box-shadow: 0 8px 32px #3f51b5aa;
-    border: 2.5px solid #3f51b5;
+    box-shadow: 0 8px 32px var(--f2-purple);
+    border: 2.5px solid var(--f2-holo);
 }
 body[data-layout="futurista2"] .btn-vermais .vermais-content {
-    background: #3f51b5;
+    background: var(--f2-pink);
     color: #fff;
 }
 
 /* --- FUTURISTA 3 --- */
 body[data-layout="futurista3"] {
-    background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
-    color: #fff;
+    background: var(--f3-darkviolet);
+    color: var(--f3-lavender);
 }
 body[data-layout="futurista3"] .header {
-    background: rgba(44, 83, 100, 0.25);
+    background: var(--f3-indigo);
     border-radius: 24px;
-    box-shadow: 0 8px 32px #00c6ff99;
+    box-shadow: 0 8px 32px var(--f3-bright);
 }
 body[data-layout="futurista3"] h1 {
     font-family: 'Orbitron', sans-serif;
-    color: #00c6ff;
+    color: var(--f3-lavender);
     font-size: 2.3em;
     text-transform: uppercase;
     letter-spacing: 2px;
+    text-shadow: 0 0 8px var(--f3-bright);
 }
 body[data-layout="futurista3"] .produto {
-    background: #1a2a3a;
+    background: var(--f3-quantum);
     border-radius: 24px;
-    box-shadow: 0 8px 32px #00c6ff99;
-    border: 2.5px solid #00c6ff;
+    box-shadow: 0 8px 32px var(--f3-bright);
+    border: 2.5px solid var(--f3-lavender);
 }
 body[data-layout="futurista3"] .btn-vermais .vermais-content {
-    background: #00c6ff;
+    background: var(--f3-bright);
     color: #fff;
 }
 
 /* --- EXECUTIVO 2 --- */
 body[data-layout="executivo2"] {
-    background: #f0f4f8;
-    color: #222;
+    background: var(--e2-pearl);
+    color: var(--e2-darkgray);
 }
 body[data-layout="executivo2"] .header {
-    background: #fff;
+    background: var(--e2-beige);
     border-radius: 16px;
-    box-shadow: 0 2px 10px #b2bec3;
+    box-shadow: 0 2px 10px var(--e2-midgray);
 }
 body[data-layout="executivo2"] h1 {
     font-family: 'Roboto', sans-serif;
-    color: #0984e3;
+    color: var(--e2-darkgray);
     font-size: 2em;
     font-weight: 600;
 }
 body[data-layout="executivo2"] .produto {
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 10px #b2bec3;
-    border: 1px solid #dfe6e9;
+    box-shadow: 0 2px 10px var(--e2-midgray);
+    border: 1px solid var(--e2-beige);
 }
 body[data-layout="executivo2"] .btn-vermais .vermais-content {
-    background: #0984e3;
+    background: var(--e2-caramel);
     color: #fff;
     border-radius: 6px;
 }
 
 /* --- EXECUTIVO 3 --- */
 body[data-layout="executivo3"] {
-    background: #eaeaea;
-    color: #222;
+    background: var(--e3-ice);
+    color: var(--e3-navy);
 }
 body[data-layout="executivo3"] .header {
-    background: #fff;
+    background: var(--e3-lightblue);
     border-radius: 8px;
-    box-shadow: 0 2px 10px #636e72;
+    box-shadow: 0 2px 10px var(--e3-grayblue);
 }
 body[data-layout="executivo3"] h1 {
     font-family: 'Roboto', sans-serif;
-    color: #636e72;
+    color: var(--e3-navy);
     font-size: 2em;
     font-weight: 700;
 }
 body[data-layout="executivo3"] .produto {
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 10px #636e72;
-    border: 1px solid #b2bec3;
+    box-shadow: 0 2px 10px var(--e3-grayblue);
+    border: 1px solid var(--e3-lightblue);
 }
 body[data-layout="executivo3"] .btn-vermais .vermais-content {
-    background: #636e72;
+    background: var(--e3-blue);
     color: #fff;
     border-radius: 4px;
+}
+
+/* --- BARRA DE BUSCA POR LAYOUT --- */
+body[data-layout="futurista"] .search-container i {
+    color: var(--f1-cyan);
+}
+body[data-layout="futurista"] #busca {
+    background: var(--f1-space);
+    color: var(--f1-cyan);
+    border: 2px solid var(--f1-cyan);
+}
+body[data-layout="futurista"] #busca::placeholder {
+    color: var(--f1-cyan);
+    opacity: 0.7;
+}
+
+body[data-layout="futurista2"] .search-container i {
+    color: var(--f2-holo);
+}
+body[data-layout="futurista2"] #busca {
+    background: var(--f2-deepblue);
+    color: var(--f2-holo);
+    border: 2px solid var(--f2-holo);
+}
+body[data-layout="futurista2"] #busca::placeholder {
+    color: var(--f2-holo);
+    opacity: 0.7;
+}
+
+body[data-layout="futurista3"] .search-container i {
+    color: var(--f3-lavender);
+}
+body[data-layout="futurista3"] #busca {
+    background: var(--f3-quantum);
+    color: var(--f3-lavender);
+    border: 2px solid var(--f3-lavender);
+}
+body[data-layout="futurista3"] #busca::placeholder {
+    color: var(--f3-lavender);
+    opacity: 0.7;
+}
+
+body[data-layout="executivo"] .search-container i {
+    color: var(--e1-corpblue);
+}
+body[data-layout="executivo"] #busca {
+    background: #fff;
+    color: var(--e1-corpblue);
+    border: 2px solid var(--e1-corpblue);
+}
+body[data-layout="executivo"] #busca::placeholder {
+    color: var(--e1-corpblue);
+    opacity: 0.7;
+}
+
+body[data-layout="executivo2"] .search-container i {
+    color: var(--e2-caramel);
+}
+body[data-layout="executivo2"] #busca {
+    background: var(--e2-pearl);
+    color: var(--e2-darkgray);
+    border: 2px solid var(--e2-caramel);
+}
+body[data-layout="executivo2"] #busca::placeholder {
+    color: var(--e2-darkgray);
+    opacity: 0.7;
+}
+
+body[data-layout="executivo3"] .search-container i {
+    color: var(--e3-blue);
+}
+body[data-layout="executivo3"] #busca {
+    background: var(--e3-lightblue);
+    color: var(--e3-navy);
+    border: 2px solid var(--e3-blue);
+}
+body[data-layout="executivo3"] #busca::placeholder {
+    color: var(--e3-navy);
+    opacity: 0.7;
 }
