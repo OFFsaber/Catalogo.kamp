@@ -35,12 +35,6 @@ function renderProdutos(produtos) {
         div.appendChild(img);
         div.appendChild(nomeDiv);
         container.appendChild(div);
-
-        if (idx < produtos.length - 1) {
-            const sep = document.createElement('div');
-            sep.className = 'separador';
-            container.appendChild(sep);
-        }
     });
 }
 
@@ -48,12 +42,10 @@ function renderProdutos(produtos) {
 function renderLetras(produtos) {
     const letrasDiv = document.getElementById('letras');
     letrasDiv.innerHTML = '';
-    // Sempre mostra A-Z
     for (let i = 65; i <= 90; i++) {
         const letra = String.fromCharCode(i);
         const btn = document.createElement('button');
         btn.textContent = letra;
-        // Só habilita se houver produto com essa letra
         btn.disabled = !produtos.some(p => p.nome[0].toUpperCase() === letra);
         btn.onclick = () => {
             const idx = produtos.findIndex(p => p.nome[0].toUpperCase() === letra);
@@ -65,23 +57,26 @@ function renderLetras(produtos) {
     }
 }
 
+// Função de busca
+function filtrarProdutos(termo) {
+    const produtosFiltrados = produtosGlobais.filter(produto => 
+        produto.nome.toLowerCase().includes(termo.toLowerCase())
+    );
+    renderProdutos(produtosFiltrados);
+    renderLetras(produtosFiltrados);
+}
+
+// Event listeners
+document.getElementById('busca').addEventListener('input', (e) => {
+    filtrarProdutos(e.target.value);
+});
+
 // Carrega os produtos e inicializa tudo
 fetch('produtos.json')
     .then(response => response.json())
     .then(produtos => {
-        // Ordena os produtos por nome (ordem alfabética)
         produtosGlobais = produtos.slice().sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
         renderProdutos(produtosGlobais);
         renderLetras(produtosGlobais);
-
-        // Filtro por nome
-        document.getElementById('busca').addEventListener('input', function() {
-            const termo = this.value.trim().toLowerCase();
-            const filtrados = produtosGlobais
-                .filter(p => p.nome.toLowerCase().includes(termo))
-                .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
-            renderProdutos(filtrados);
-            renderLetras(filtrados);
-        });
     })
     .catch(error => console.error('Erro ao carregar produtos:', error));
