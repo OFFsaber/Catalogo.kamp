@@ -120,7 +120,9 @@ function abrirDetalhes(produto) {
                         flex-direction: column;
                     }
                     .product-name {
-                        font-size: 1.3em;
+                        font-size: 0.95em;
+                        word-break: break-word;
+                        line-height: 1.1;
                     }
                 }
             </style>
